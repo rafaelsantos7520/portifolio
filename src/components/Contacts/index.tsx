@@ -20,6 +20,10 @@ export const Contacts = () => {
   const ref = useRef(null);
 
   const linkedInUrl = `https://www.linkedin.com/in/${userData.linkedinUser}`;
+  const whatsappPhone = userData.whatsappNumber.replace(/\D/g, "");
+  const whatsappMessage = encodeURIComponent(
+    "Olá, venho por meio do seu portfólio e gostaria de conhecer melhor seus serviços."
+  );
 
   const { scrollYProgress } = useViewportScroll();
   const scale = useTransform(scrollYProgress, [0, 1], [0.1, 0.9]);
@@ -56,7 +60,8 @@ export const Contacts = () => {
                   color="grey2"
                   type="body2"
                   target="_blank"
-                  href={`https://api.whatsapp.com/send?phone=+55+${userData.whatsappNumber}&text=Ol%C3%A1%2C%20venho%20por%20meio%20do%20seu%20portf%C3%B3lio%20na%20internet%2C%20gostaria%20de%20conhecer%20melhor%20seus%20servi%C3%A7os`}
+                  rel="noreferrer"
+                  href={`https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${whatsappMessage}`}
                 >
                   enviar mensagem
                 </Text>
@@ -80,10 +85,8 @@ export const Contacts = () => {
                   color="grey2"
                   type="body2"
                   target="_blank"
-                  href={`mailto=${userData.emailUser}`}
-                  onClick={() =>
-                    (window.location.href = "mailto:nekelpatrick.com")
-                  }
+                  rel="noreferrer"
+                  href={`mailto:${userData.emailUser}`}
                 >
                   Enviar e-mail
                 </Text>
@@ -105,6 +108,7 @@ export const Contacts = () => {
                   color="grey2"
                   type="body2"
                   target="_blank"
+                  rel="noreferrer"
                   href={linkedInUrl}
                 >
                   ver perfil

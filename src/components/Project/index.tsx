@@ -21,16 +21,6 @@ interface ReposType {
 }
 
 export const Project = (): JSX.Element => {
-  const projetos = [
-    {
-      id: 1,
-      name: "MotorsShop",
-      language: "TypeScript",
-      description: "Loja de carros online",
-      html_url: "https://motorshoponline.netlify.app/",
-      homepage: "https://github.com/E-Commerce-M6/front_end"
-    }
-  ]
   const [repositories] = useState<ReposType[]>([
     {
       id: 1,
@@ -96,12 +86,13 @@ export const Project = (): JSX.Element => {
               {repository.description?.substring(0, 129)}
             </Text>
             <ProjectLinks>
-              <ProjectLink target="_blank" href={repository.homepage}>
+              <ProjectLink target="_blank" rel="noreferrer" href={repository.homepage}>
                 <FaGithub />Github 
               </ProjectLink>
-              {repository.homepage && (
+              {repository.html_url && (
                 <ProjectLink
                   target="_blank"
+                  rel="noreferrer"
                   href={repository.html_url}
                 >
                   <FaShare /> Ver site
