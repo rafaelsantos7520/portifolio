@@ -39,6 +39,7 @@ export const Footer = (): JSX.Element => {
             type="circle"
             as="a"
             target="_blank"
+            rel="noreferrer"
             href={`https://instagram.com/${userData.instagramUser}`}
           >
             <FaInstagram />
@@ -48,6 +49,7 @@ export const Footer = (): JSX.Element => {
             type="circle"
             as="a"
             target="_blank"
+            rel="noreferrer"
             href={`https://linkedin.com/in/${userData.linkedinUser}`}
           >
             <FaLinkedinIn />

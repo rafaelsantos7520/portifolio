@@ -28,7 +28,7 @@ import {
 } from "./style";
 
 export const Home = (): JSX.Element => {
-  const gihubUrl = `https://github.com/${userData.githubUser}`;
+  const githubUrl = `https://github.com/${userData.githubUser}`;
   const portfolioUrl = `https://github.com/rafaelsantos7520/portifolio`;
 
   return (
@@ -81,7 +81,7 @@ export const Home = (): JSX.Element => {
               <Button as="a" type="primary" href="#projects">
                 Ver projetos
               </Button>
-              <Button as="a" type="outline" target="_blank" href={portfolioUrl}>
+              <Button as="a" type="outline" target="_blank" rel="noreferrer" href={portfolioUrl}>
                 Codigo do meu Portifólio
               </Button>
               <Button
@@ -90,7 +90,8 @@ export const Home = (): JSX.Element => {
                 css={{ "&:hover": { color: "$grey1" } }}
                 type="circle"
                 target="_blank"
-                href={gihubUrl}
+                rel="noreferrer"
+                href={githubUrl}
               >
                 <FaGithub />
               </Button>
