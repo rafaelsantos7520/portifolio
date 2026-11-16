@@ -1,50 +1,69 @@
 import { styled } from "@/styles/stitches.config";
-import { Flex, Container } from "@/styles/Global";
-import { Button } from "@/styles/Buttons";
+import { Container, sackGround } from "@/styles/Global";
 
 export const Navbar = styled("nav", {
-  background: "$grey0",
-  borderBottom: "2px solid $brand1",
+  backgroundColor: "$jute",
+  backgroundImage: sackGround,
+  backgroundRepeat: "repeat",
+  backgroundSize: "320px 320px",
+  borderBottom: "2px dashed $ink",
   position: "fixed",
   inset: 0,
   bottom: "auto",
-  padding: "1rem 0",
+  padding: "0.85rem 0 1rem",
   width: "100%",
-  zIndex: "99999",
+  zIndex: 40,
 
   [`& ${Container}`]: {
     display: "flex",
     position: "relative",
     justifyContent: "space-between",
+    alignItems: "center",
+    gap: "1rem",
     "@mobile": {
       flexDirection: "column",
+      alignItems: "stretch",
     },
   },
 });
 
-export const LogoTipo = styled(Flex, {
+export const LogoTipo = styled("a", {
+  display: "flex",
   alignItems: "center",
-});
-
-export const LogoTipoText = styled("span", {
-  fontSize: "1.25rem",
-  fontWeight: 600,
-  color: "$grey4",
-  fontFamily: '"IBM Plex Sans"',
-  "@mobile": {
-    fontSize: "1rem",
+  gap: "0.75rem",
+  textDecoration: "none",
+  color: "$ink",
+  "&:hover": {
+    color: "$accent",
   },
 });
 
-export const NavbarLinks = styled(Flex, {
+export const LogoTipoText = styled("span", {
+  fontSize: "1.35rem",
+  fontWeight: 800,
+  color: "inherit",
+  fontFamily: "$titles",
+  letterSpacing: "-0.03em",
+  textTransform: "uppercase",
+  lineHeight: 1,
   "@mobile": {
-    marginTop: "$3",
+    fontSize: "1.15rem",
+  },
+});
+
+export const NavbarLinks = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  gap: "1.5rem",
+  "@mobile": {
+    marginTop: "1rem",
+    paddingBottom: "1.75rem",
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "stretch",
+    gap: "0.5rem",
     "& a": {
       width: "100%",
       justifyContent: "flex-start",
-      paddingLeft: 0,
     },
   },
 });
@@ -52,4 +71,6 @@ export const NavbarLinks = styled(Flex, {
 export const NavbarMobileArea = styled("div", {
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
+  width: "100%",
 });

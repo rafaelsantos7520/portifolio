@@ -1,6 +1,5 @@
 import { Container } from "@/styles/Global";
 import { Text } from "@/styles/Text";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
 
 import {
   ContactSection,
@@ -8,114 +7,87 @@ import {
   ContactSectionText,
   ContactsCards,
   ContactCard,
-  ContactCardImage,
   ContactCardContent,
+  Tag,
 } from "./style";
 
-import { FaWhatsapp, FaEnvelopeOpen, FaLinkedin } from "react-icons/fa";
-import { useRef } from "react";
 import { userData } from "@/utils/userData";
 
 export const Contacts = () => {
-  const ref = useRef(null);
-
   const linkedInUrl = `https://www.linkedin.com/in/${userData.linkedinUser}`;
   const whatsappPhone = userData.whatsappNumber.replace(/\D/g, "");
   const whatsappMessage = encodeURIComponent(
     "Olá, venho por meio do seu portfólio e gostaria de conhecer melhor seus serviços."
   );
 
-  const { scrollYProgress } = useViewportScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [0.1, 0.9]);
-
   return (
     <ContactSection id="contact">
       <Container>
-        <ContactSectionContent ref={ref}>
-          <motion.div style={{ scale }}>
-            <ContactSectionText>
-              <Text type="heading2" color="grey4">
-                Vamos conversar e {" "}
-                <Text as="span" type="heading2" color="brand1">
-                  desenvolver soluções para sua empresa
-                </Text>
-                , Juntos!
-              </Text>
-            </ContactSectionText>
-          </motion.div>
-          <ContactsCards>
-            <ContactCard>
-              <ContactCardImage className="wpp">
-                <FaWhatsapp color="#fff" size={24} />
-              </ContactCardImage>
-              <ContactCardContent>
-                <Text type="heading4" color="grey4">
-                  Whatsapp
-                </Text>
-                <Text color="grey2" type="body2">
-                  Sintase a vontade para me chamar!
-                </Text>
-                <Text
-                  as="a"
-                  color="grey2"
-                  type="body2"
-                  target="_blank"
-                  rel="noreferrer"
-                  href={`https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${whatsappMessage}`}
-                >
-                  enviar mensagem
-                </Text>
-              </ContactCardContent>
-            </ContactCard>
-
-            <ContactCard>
-              <ContactCardImage className="email">
-                <FaEnvelopeOpen color="#fff" size={24} />
-              </ContactCardImage>
-              <ContactCardContent>
-                <Text type="heading4" color="grey4">
-                  E-mail
-                </Text>
-                <Text color="grey2" type="body2">
-                Envie-me um e-mail relatando feedbacks, sugestões e ideias
-                </Text>
-
-                <Text
-                  as="a"
-                  color="grey2"
-                  type="body2"
-                  target="_blank"
-                  rel="noreferrer"
-                  href={`mailto:${userData.emailUser}`}
-                >
-                  Enviar e-mail
-                </Text>
-              </ContactCardContent>
-            </ContactCard>
-            <ContactCard>
-              <ContactCardImage className="linkedin">
-                <FaLinkedin color="#fff" size={24} />
-              </ContactCardImage>
-              <ContactCardContent>
-                <Text type="heading4" color="grey4">
-                  Linkedin
-                </Text>
-                <Text color="grey2" type="body2">
-                Podemos criar interações mais constantes assim como uma rede de compartilhamento
-                </Text>
-                <Text
-                  as="a"
-                  color="grey2"
-                  type="body2"
-                  target="_blank"
-                  rel="noreferrer"
-                  href={linkedInUrl}
-                >
-                  ver perfil
-                </Text>
-              </ContactCardContent>
-            </ContactCard>
-          </ContactsCards>
+        <ContactSectionContent>
+          <ContactSectionText>
+            <Text as="h2" type="heading2">
+              Vamos conversar
+            </Text>
+            <Text
+              type="body1"
+              color="muted"
+              css={{ marginTop: "1.25rem", maxWidth: "42ch" }}
+            >
+              Um projeto, uma vaga ou só um café. A etiqueta vai com você.
+            </Text>
+          </ContactSectionText>
+          <Tag>
+            <ContactsCards>
+              <ContactCard>
+                <ContactCardContent>
+                  <Text as="h3" type="heading4">
+                    WhatsApp
+                  </Text>
+                  <Text
+                    as="a"
+                    type="body2"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://api.whatsapp.com/send?phone=${whatsappPhone}&text=${whatsappMessage}`}
+                  >
+                    Enviar mensagem
+                  </Text>
+                </ContactCardContent>
+              </ContactCard>
+              <ContactCard>
+                <ContactCardContent>
+                  <Text as="h3" type="heading4">
+                    E-mail
+                  </Text>
+                  <Text
+                    as="a"
+                    type="body2"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`mailto:${userData.emailUser}`}
+                  >
+                    {userData.emailUser}
+                  </Text>
+                </ContactCardContent>
+              </ContactCard>
+              <ContactCard>
+                <ContactCardContent>
+                  <Text as="h3" type="heading4">
+                    LinkedIn
+                  </Text>
+                  <Text
+                    as="a"
+                    type="body2"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={linkedInUrl}
+                  >
+                    Ver perfil
+                  </Text>
+                </ContactCardContent>
+              </ContactCard>
+            </ContactsCards>
+          </Tag>
         </ContactSectionContent>
       </Container>
     </ContactSection>
