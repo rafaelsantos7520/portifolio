@@ -1,10 +1,78 @@
 import { createStitches } from "@stitches/react";
 
-export const { styled } = createStitches({
+export const { styled, keyframes, css, globalCss, theme } = createStitches({
+  theme: {
+    colors: {
+      brand1: "#1848C3",
+      brand2: "#0F2E8A",
+      grey0: "#16140F",
+      grey1: "#16140F",
+      grey2: "#5C564C",
+      grey3: "#C4BBA8",
+      grey4: "#16140F",
+      grey5: "#EDE8DC",
+      ink: "#16140F",
+      muted: "#5C564C",
+      accent: "#1848C3",
+      accentDeep: "#0F2E8A",
+      jute: "#D6CFC0",
+      juteDeep: "#C4BBA8",
+      paper: "#EDE8DC",
+      ghost: "rgba(22, 20, 15, 0.38)",
+      socialInstagram: "#1848C3",
+      socialFacebook: "#1848C3",
+      socialLinkedin: "#1848C3",
+      whiteFixed: "#EDE8DC",
+      mode: "#16140F",
+    },
+    sizes: {
+      container: "76rem",
+      containerTablet: "48rem",
+    },
+    space: {
+      1: "0.5rem",
+      2: "1rem",
+      3: "2rem",
+      4: "3rem",
+      5: "4rem",
+      section: "7rem",
+      sectionMobile: "4rem",
+      hem: "4.5rem",
+    },
+    fonts: {
+      titles: '"Big Shoulders Display", "Arial Narrow", sans-serif',
+      texts: '"Atkinson Hyperlegible", Georgia, serif',
+    },
+    fontSizes: {
+      title1: "clamp(3.25rem, 11vw, 7.5rem)",
+      title2: "clamp(2rem, 4.5vw, 3.25rem)",
+      title3: "clamp(1.5rem, 3vw, 2.25rem)",
+      title4: "1.25rem",
+      text1: "1.0625rem",
+      text2: "0.9375rem",
+      title1Mobile: "clamp(2.85rem, 18vw, 3.75rem)",
+      title2Mobile: "2rem",
+    },
+    lineHeights: {
+      title1: "0.82",
+      title2: "1.05",
+      title3: "1.15",
+      title4: "1.25",
+      text1: "1.65",
+      text2: "1.55",
+      title1Mobile: "0.84",
+      title2Mobile: "1.1",
+    },
+    radii: {
+      1: "2px",
+      2: "2px",
+    },
+  },
   media: {
     mobileLittle: "(max-width: 400px)",
     mobile: "(max-width: 991px)",
     tablet: "(max-width: 1300px)",
+    reduce: "(prefers-reduced-motion: reduce)",
   },
   utils: {
     marginX: (value: string) => ({

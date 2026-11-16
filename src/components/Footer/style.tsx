@@ -1,33 +1,25 @@
 import { styled } from "@/styles/stitches.config";
-import { Container, Flex } from "@/styles/Global";
-import dots from "@/public/static/img/background/dots.svg";
+import { Container } from "@/styles/Global";
 
 export const Footer = styled("footer", {
-  backgroundColor: "$grey0",
-  padding: "7rem 0",
-  backgroundImage: `url(${dots})`,
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "left top 8rem",
-  "& a": {
-    margin: "0 !important",
-  },
-  "@tablet": {
-    backgroundPosition: "center top 1rem",
-  },
+  backgroundColor: "transparent",
+  padding: "1.75rem 0 3rem",
   [`& ${Container}`]: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "baseline",
+    gap: "1.5rem",
     "@mobile": {
       flexDirection: "column",
-      [`& ${Flex}:first-child`]: {
-        marginBottom: "$5",
-        flexDirection: "column",
-        textAlign: "center",
-        [`& img`]: {
-          marginBottom: "$2",
-        },
-      },
+      gap: "0.75rem",
+    },
+  },
+  "& a": {
+    color: "$ink",
+    fontWeight: 700,
+    textDecoration: "underline",
+    "&:hover": {
+      color: "$accent",
     },
   },
 });

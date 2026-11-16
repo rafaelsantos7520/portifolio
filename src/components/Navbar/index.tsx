@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useMedia from "use-media";
 import { userData } from "@/utils/userData";
 
@@ -13,64 +13,74 @@ import {
 import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { Button } from "@/styles/Buttons";
-import { Container, Flex } from "@/styles/Global";
-
-export interface MenuButtonOpen {
-  open: Boolean;
-  setOpen: (value: Boolean) => void;
-}
+import { Container } from "@/styles/Global";
 
 export const NavBar = (): JSX.Element => {
-
   const isWide = useMedia({ maxWidth: "991px" });
-
-  document.title = userData.nameUser;
-
   const [open, setOpen] = useState(false);
 
-  const OpenMenu = () => {
-    setOpen(!open);
-  };
+  useEffect(() => {
+    document.title = `${userData.nameUser} — ${userData.role}`;
+  }, []);
+
+  useEffect(() => {
+    if (!isWide) {
+      setOpen(false);
+    }
+  }, [isWide]);
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <NavbarWrapper>
       <Container>
         <NavbarMobileArea>
-          <LogoTipo>
+          <LogoTipo href="#home">
             <LogoTipoText>{userData.nameUser}</LogoTipoText>
           </LogoTipo>
           {isWide && (
             <Button
               type="icon"
-              onClick={OpenMenu}
-              aria-label={!open ? "Abrir Menu" : "Fechar Menu"}
+              onClick={() => setOpen(!open)}
+              aria-label={open ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={open}
+              aria-controls="site-nav"
             >
-              {!open ? <FaBars /> : <IoClose />}
+              {open ? <IoClose size={22} /> : <FaBars size={18} />}
             </Button>
           )}
         </NavbarMobileArea>
-        <Flex>
-          {isWide ? open && <NavLinks /> : <NavLinks />}
-        </Flex>
+        {isWide ? open && <NavLinks onNavigate={() => setOpen(false)} /> : <NavLinks />}
       </Container>
     </NavbarWrapper>
   );
 };
 
-export const NavLinks = (): JSX.Element => {
+const NavLinks = ({ onNavigate }: { onNavigate?: () => void }): JSX.Element => {
   return (
-    <NavbarLinks>
-      <Button type="btLink" as="a" color="grey4" href={`#home`}>
-        inicio
+    <NavbarLinks id="site-nav">
+      <Button type="btLink" as="a" href="#home" onClick={onNavigate}>
+        Início
       </Button>
-      <Button type="btLink" as="a" color="grey4" href={`#projects`}>
+      <Button type="btLink" as="a" href="#projects" onClick={onNavigate}>
         Projetos
       </Button>
-      <Button type="btLink" as="a" color="grey4" href={`#contact`}>
-        Contatos
+      <Button type="btLink" as="a" href="#stack" onClick={onNavigate}>
+        Origem
       </Button>
-      <Button type="btLink" as="a" color="grey4" href={`#social-media`}>
-        Redes sociais
+      <Button type="btLink" as="a" href="#contact" onClick={onNavigate}>
+        Contato
+      </Button>
+      <Button type="primary" as="a" href="#contact" onClick={onNavigate}>
+        Fale comigo
       </Button>
     </NavbarLinks>
   );

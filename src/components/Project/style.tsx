@@ -1,81 +1,111 @@
 import { styled } from "@/styles/stitches.config";
-import { Flex } from "@/styles/Global";
 import { Text } from "@/styles/Text";
 
-export const ProjectStack = styled(Flex, {
-  margin: "1.25rem 0 1.25rem 0",
+export const ProjectTitle = styled(Text, {
+  display: "block",
+});
+
+export const ProjectStack = styled("div", {
+  display: "flex",
+  alignItems: "baseline",
+  gap: "0.5rem",
+  margin: "0.5rem 0 0.65rem",
   "@mobileLittle": {
     flexDirection: "column",
-    alignItems: "self-start",
+    alignItems: "flex-start",
   },
 });
 
 export const ProjectStackTech = styled("span", {
-  backgroundColor: "$grey1",
-  color: "$grey2",
-  padding: "0  0.5rem",
-  borderRadius: "$2",
+  color: "$accent",
+  fontFamily: "$titles",
+  fontWeight: 700,
+  letterSpacing: "0.04em",
+  textTransform: "uppercase",
+  fontSize: "0.95rem",
 });
 
-export const ProjectLinks = styled(Flex, {
-  marginTop: "2.25rem",
+export const ProjectLinks = styled("div", {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "1.25rem",
+  marginTop: "0.9rem",
 });
 
 export const ProjectLink = styled("a", {
   fontSize: "1rem",
-  color: "$grey2",
-  fontWeight: "500",
-  marginRight: "$2",
-  display: "flex",
+  color: "$ink",
+  fontWeight: "700",
+  display: "inline-flex",
   alignItems: "center",
-  lineHeight: "0",
-
+  gap: "0.4rem",
+  textDecoration: "underline",
+  textUnderlineOffset: "0.22em",
   "&:hover": {
-    color: "$grey5",
-  },
-
-  [`& svg`]: {
-    marginRight: "$1",
+    color: "$accent",
   },
 });
 
-export const ProjectTitle = styled(Text, {});
-
 export const Project = styled("article", {
-  marginTop: "4rem",
-  [`&:first-child`]: {
-    [`& ${ProjectTitle}:first-child`]: {
-      position: "relative",
-      width: "max-content",
-
-      "@mobile": {
-        width: "auto",
-      },
-
-      "&::before": {
-        content: 'New',
-        position: "absolute",
-        top: "5px",
-        right: "-4rem",
-        width: "max-content",
-        height: "28px",
-        backgroundColor: "$brand1",
-        padding: "0px 8px",
-        borderRadius: "var(--radii-1)",
-        fontSize: "14px",
-        color: "var(--colors-whiteFixed)",
-        fontWeight: "400",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "Inter",
-
-        "@mobile": {
-          letf: 0,
-          top: "-2.5rem",
-          right: "auto",
+  padding: "1.1rem 0",
+  borderTop: "2px solid $ink",
+  color: "$ink",
+  transition: "none",
+  "& h3": {
+    color: "currentColor",
+  },
+  "& p": {
+    color: "currentColor",
+  },
+  "& a": {
+    color: "currentColor",
+  },
+  [`& ${ProjectStackTech}`]: {
+    color: "currentColor",
+  },
+  "&:hover, &:focus-within": {
+    color: "$ink",
+    [`& ${ProjectStackTech}`]: {
+      color: "$accent",
+    },
+  },
+  variants: {
+    featured: {
+      true: {
+        padding: "0 0 1.35rem",
+        borderTop: "none",
+        color: "$ink",
+        gridColumn: "1 / -1",
+        [`& ${ProjectTitle}`]: {
+          fontSize: "clamp(2.4rem, 8vw, 6.5rem)",
+          lineHeight: 0.86,
+        },
+        [`& ${ProjectStackTech}`]: {
+          color: "$accent",
         },
       },
     },
+  },
+});
+
+export const LotList = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "1.4fr 1fr",
+  columnGap: "3rem",
+  rowGap: 0,
+  "&:hover article, &:focus-within article": {
+    color: "$ghost",
+    [`& ${ProjectStackTech}`]: {
+      color: "$ghost",
+    },
+  },
+  "&:hover article:hover, &:focus-within article:focus-within": {
+    color: "$ink",
+    [`& ${ProjectStackTech}`]: {
+      color: "$accent",
+    },
+  },
+  "@mobile": {
+    gridTemplateColumns: "1fr",
   },
 });

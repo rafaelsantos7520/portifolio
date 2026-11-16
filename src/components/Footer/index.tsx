@@ -1,59 +1,48 @@
-import { Container, Flex, Box } from "@/styles/Global";
+import { Container, Flex } from "@/styles/Global";
 import { Text } from "@/styles/Text";
 import { Footer as FooterWrapper } from "./style";
-import { UserImage } from "@/pages/home/style";
 import { userData } from "@/utils/userData";
-import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { Button } from "@/styles/Buttons";
 
 export const Footer = (): JSX.Element => {
   return (
     <FooterWrapper id="social-media">
       <Container>
-        <Flex>
-          <UserImage
-            src={`https://github.com/${userData.githubUser}.png`}
-            alt={userData.nameUser}
-            title={userData.nameUser}
-            width={"70px"}
-            height={"70px"}
-          />
-          <Box css={{ marginLeft: "$2" }}>
-            <Text type="heading4" color="grey5" css={{ marginBottom: "$2" }}>
-             Obrigado pela visita {/* <HandEffect /> */}
-            </Text>
-            <Text type="body1" color="grey2">
-              Siga minhas redes sociais e sinta-se a vonatade para me chamar pra um café
-            </Text>
-          </Box>
-        </Flex>
+        <Text as="p" type="heading4">
+          Obrigado pela visita
+        </Text>
         <Flex
           css={{
             flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "$2",
+            gap: "1.25rem",
           }}
         >
-          <Button
-            className="instagram"
-            type="circle"
+          <Text
             as="a"
+            type="body2"
             target="_blank"
             rel="noreferrer"
             href={`https://instagram.com/${userData.instagramUser}`}
           >
-            <FaInstagram />
-          </Button>
-          <Button
-            className="linkedin"
-            type="circle"
+            Instagram
+          </Text>
+          <Text
             as="a"
+            type="body2"
             target="_blank"
             rel="noreferrer"
             href={`https://linkedin.com/in/${userData.linkedinUser}`}
           >
-            <FaLinkedinIn />
-          </Button>
+            LinkedIn
+          </Text>
+          <Text
+            as="a"
+            type="body2"
+            target="_blank"
+            rel="noreferrer"
+            href={`https://github.com/${userData.githubUser}`}
+          >
+            GitHub
+          </Text>
         </Flex>
       </Container>
     </FooterWrapper>

@@ -1,146 +1,126 @@
-import { styled } from "@/styles/stitches.config";
-import { Flex } from "@/styles/Global";
-import { Button } from "@/styles/Buttons";
-import { css } from "@stitches/react";
+import { styled, keyframes } from "@/styles/stitches.config";
 
-import meIlustration from "@/public/static/img/background/me-ilustration.svg";
-import backgroundImg from "@/public/static/img/background/header-bg.svg";
+const soak = keyframes({
+  "0%": { opacity: 0.45, filter: "blur(4px)" },
+  "100%": { opacity: 1, filter: "blur(0)" },
+});
 
-import dots from "@/public/static/img/background/dots.svg";
+export const Page = styled("main", {
+  scrollMarginTop: "5rem",
+});
 
 export const Header = styled("header", {
-  backgroundColor: "$grey1",
-  padding: "12rem 0 8rem 0",
-  backgroundImage: `url(${backgroundImg})`,
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "right",
-  backgroundAttachment: "fixed",
-  borderBottom: "2px solid $grey5",
-  "@tablet": {
-    backgroundPosition: "right -10% center",
-  },
+  padding: "6.25rem 0 0",
+  display: "flex",
+  flexDirection: "column",
   "@mobile": {
-    padding: "9rem 0 6rem 0",
-    backgroundImage: `none`,
-  },
-  "@mobileLittle": {
-    padding: "9rem 0 0 0",
+    padding: "5.5rem 0 0",
   },
 });
 
 export const HeaderContent = styled("div", {
-  maxWidth: "100%",
-  width: "36rem",
+  width: "100%",
   display: "flex",
   flexDirection: "column",
-  gap: "$2",
-  "@tablet": {
-    width: "36rem",
-  },
-  "@mobile": {
-    width: "100%",
+  animation: `${soak} 600ms cubic-bezier(0.16, 1, 0.3, 1) both`,
+  "@reduce": {
+    animation: "none",
   },
 });
 
-export const HeaderButtonsArea = styled(Flex, {
-  marginTop: "$2",
-
-  [`& ${Button}`]: {
-    marginRight: "$2",
-    overflow: "hidden",
-  },
-
+export const HeroTop = styled("div", {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "flex-end",
+  gap: "1.5rem",
+  marginTop: "1.25rem",
   "@mobile": {
-    [`& ${Button}`]: {
-      marginRight: "$2",
-      overflow: "hidden",
-      width: "100%",
-    },
-
-    maxWidth: "100%",
-    display: "flex",
-    flexDirection: "column",
-    gridGap: "$2",
-    marginBottom: "$2",
+    alignItems: "center",
+    gap: "1rem",
+    marginTop: "0.85rem",
   },
+});
+
+export const HeaderButtonsArea = styled("div", {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "0.75rem",
+  marginTop: "1.25rem",
 });
 
 export const UserImage = styled("img", {
-  borderRadius: "50%",
+  width: "8.5rem",
+  height: "8.5rem",
+  objectFit: "cover",
+  background: "transparent",
+  flexShrink: 0,
   "@mobile": {
-    width: "2.25rem",
-    height: "2.25rem",
+    width: "4.75rem",
+    height: "4.75rem",
   },
 });
 
-export const StackSection = styled("div", {
-  backgroundColor: "$grey4",
-  padding: "4rem 0 2rem 0",
+export const RoleMark = styled("p", {
+  fontFamily: "$texts",
+  fontSize: "1.0625rem",
+  color: "$ink",
+  maxWidth: "22rem",
+  lineHeight: 1.45,
+  "@mobile": {
+    fontSize: "0.95rem",
+  },
+});
+
+export const Bio = styled("div", {
+  maxWidth: "68ch",
+  display: "grid",
+  gap: "0.85rem",
+  marginTop: "1.1rem",
+  "@mobile": {
+    marginTop: "0.75rem",
+  },
+});
+
+export const StackSection = styled("section", {
+  padding: "$4 0 $section",
+  borderTop: "2px dashed $ink",
+  scrollMarginTop: "5rem",
+  "@mobile": {
+    padding: "$3 0 $sectionMobile",
+  },
 });
 
 export const StackCards = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr",
-  padding: "3rem 0",
-  gap: "6rem",
-  marginTop: "$4",
-
-  "@tablet": {
-    gridTemplateColumns: "1fr 1fr 1fr",
-  },
-
-  "@mobile": {
-    gridTemplateColumns: "1fr 1fr",
-  },
-
-  "@mobileLittle": {
-    display: "flex",
-    overflow: "auto",
-    margin: "0 -1rem",
-    paddingInline: "1rem",
-  },
+  marginTop: "1.25rem",
 });
 
 export const ProjectsArea = styled("section", {
-  padding: "$section 0",
-  backgroundColor: "$grey0",
-  backgroundImage: `url(${dots})`,
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "left top 11rem",
-  "@tablet": {
-    backgroundPosition: "right top 8rem",
-    padding: "$sectionMobile 0",
+  padding: "1.75rem 0 2.5rem",
+  scrollMarginTop: "5rem",
+  "@mobile": {
+    padding: "1.1rem 0 1.5rem",
   },
 });
 
 export const ProjectsAreaSocialMediaMessage = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "2rem",
-
-  "@mobile": {
-    width: "100%",
-    position: "static",
-    order: "2",
-    marginTop: "5rem",
-  },
+  gap: "0.75rem",
+  marginBottom: "1.25rem",
+  maxWidth: "42rem",
 });
 
 export const ProjectsAreaContent = styled("div", {
   width: "100%",
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gridGap: "4rem",
-  "@mobile": {
-    gridTemplateColumns: "1fr",
-    overflow: "hidden",
-  },
 });
 
 export const ProjectAreaWrapperColumns = styled("div", {
   position: "relative",
-  alignItems: "flex-start",
-  "@mobile": {
-    flexDirection: "column",
-  },
+});
+
+export const Stitch = styled("hr", {
+  border: "none",
+  borderTop: "2px dashed $ink",
+  margin: "2.5rem 0 0",
+  background: "none",
 });
